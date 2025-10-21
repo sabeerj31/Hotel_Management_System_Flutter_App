@@ -1,0 +1,63 @@
+# Android
+/android/app/google-services.json
+/android/app/src/debug/
+/android/app/src/profile/
+/android/key.properties
+/android/key.jks
+/android/local.properties
+/android/.gradle/
+/android/app/build/
+/android/build/
+
+# iOS
+/ios/Runner/GoogleService-Info.plist
+/ios/Runner.xcworkspace/xcuserdata/
+/ios/Pods/
+/ios/Flutter/Flutter.podspec
+/ios/Flutter/App.framework/
+/ios/Flutter/Flutter.framework/
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/ephemeral/
+/ios/.symlinks/
+
+# General
+/build/
+/.dart_tool/
+/.packages
+/.flutter-plugins
+/.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/Generated.xcconfig
+
+# Firebase & Secrets
+/firebase_options.dart
+/lib/firebase_options.dart
+*.keystore
+*.jks
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+flutter.log
+
+# Web
+/web/
+
+# macOS
+.DS_Store
