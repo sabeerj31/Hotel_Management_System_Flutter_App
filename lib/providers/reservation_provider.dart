@@ -44,9 +44,12 @@ class ReservationProvider with ChangeNotifier {
   Future<void> addReservation(Reservation reservation) async {
     try {
       _error = null;
+      notifyListeners();
       await _reservationService.addReservation(reservation);
+      // No need to call loadReservations() here as the stream will update automatically
     } catch (e) {
       _error = e.toString();
+      notifyListeners();
       rethrow;
     }
   }
@@ -54,11 +57,13 @@ class ReservationProvider with ChangeNotifier {
   Future<void> updateReservation(Reservation reservation) async {
     try {
       _error = null;
+      notifyListeners();
       await _reservationService.updateReservation(reservation);
       // Force refresh after update
       loadReservations();
     } catch (e) {
       _error = e.toString();
+      notifyListeners();
       rethrow;
     }
   }
@@ -66,9 +71,11 @@ class ReservationProvider with ChangeNotifier {
   Future<void> deleteReservation(String id) async {
     try {
       _error = null;
+      notifyListeners();
       await _reservationService.deleteReservation(id);
     } catch (e) {
       _error = e.toString();
+      notifyListeners();
       rethrow;
     }
   }

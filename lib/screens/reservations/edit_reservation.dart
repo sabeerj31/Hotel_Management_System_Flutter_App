@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../models/reservation.dart';
 import '../../providers/reservation_provider.dart';
+import '../dashboard.dart'; // safe replacement if needed
 
 class EditReservationScreen extends StatefulWidget {
   final Reservation reservation;
@@ -360,7 +361,16 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
               content: Text('Reservation updated successfully!'),
             ),
           );
-          Navigator.pop(context);
+
+          // SAFE navigation: If pushed, pop. Otherwise replace with Dashboard.
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DashboardScreen()),
+            );
+          }
         }
       } catch (e) {
         if (mounted) {

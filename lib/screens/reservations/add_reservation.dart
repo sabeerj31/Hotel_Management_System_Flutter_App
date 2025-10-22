@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../../models/reservation.dart';
 import '../../providers/reservation_provider.dart';
+import '../dashboard.dart'; // used for safe replacement when this screen is embedded
 
 class AddReservationScreen extends StatefulWidget {
   const AddReservationScreen({super.key});
@@ -313,12 +314,24 @@ class _AddReservationScreenState extends State<AddReservationScreen> {
         await provider.addReservation(reservation);
 
         if (mounted) {
+          // show success
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Reservation created successfully!'),
             ),
           );
-          Navigator.pop(context);
+
+          // SAFE navigation:
+          // If this screen was pushed, pop. If not (embedded in dashboard), replace with Dashboard.
+          if (Navigator.canPop(context)) {
+            Navigator.pop(context);
+          } else {
+            // Replace the current route (embedded case) with Dashboard to avoid popping root.
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const DashboardScreen()),
+            );
+          }
         }
       } catch (e) {
         if (mounted) {

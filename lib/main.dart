@@ -20,8 +20,12 @@ class HotelManagementSystemApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ReservationProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ReservationProvider(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Hotel Management System',
         theme: ThemeData(
